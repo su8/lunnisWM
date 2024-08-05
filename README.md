@@ -19,3 +19,9 @@ g++/clang
 xterm
 
 xorg librares and headers
+
+# Keyboard shortcuts
+
+alt + 1 executes **xterm**
+
+alt + left/right mouse buttons resizes the current window
