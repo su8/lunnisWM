@@ -95,11 +95,7 @@ void Frame::moveFrame(int x, int y)
 void Frame::moveResizeFrame(int x, int y, int width, int height)
 {
     //Move and resize frame
-    XMoveResizeWindow(display, frame,
-                      x,   // Frame x
-                      y,   // Frame y
-                      width,  // Frame width
-                      height); // Frame height
+    XMoveResizeWindow(display, frame, x, y, width, height);
     //Resize client
     XResizeWindow(display, client, width, height - 25);
 
@@ -134,11 +130,7 @@ void Frame::maximize(int x, int y, int width, int height)
     XSetWindowBorderWidth(display, frame, 0);
 
     //Move and resize frame
-    XMoveResizeWindow(display, frame,
-                      x,   // Frame x
-                      y,   // Frame y
-                      width,  // Frame width
-                      height); // Frame height
+    XMoveResizeWindow(display, frame, x, y, width, height);
     //Resize client
     XResizeWindow(display, client, width, height);
 
@@ -163,11 +155,7 @@ void Frame::unmaximize()
     XSetWindowBorderWidth(display, frame, 3);
 
     //Move and resize frame
-    XMoveResizeWindow(display, frame,
-                      frameX,   // Frame x
-                      frameY,   // Frame y
-                      frameWidth,  // Frame width
-                      frameHeight); // Frame height
+    XMoveResizeWindow(display, frame, frameX, frameY, frameWidth, frameHeight);
     //Resize client
     XResizeWindow(display, client, frameWidth, frameHeight);
 
@@ -193,7 +181,9 @@ void Frame::handleCloseButton()
     event.xclient.format = 32;
     event.xclient.data.l[0] = XInternAtom(display, "WM_DELETE_WINDOW", False);
     event.xclient.data.l[1] = CurrentTime;
-    int result = XSendEvent(display, client, False, NoEventMask, &event);
+    Atom wm_delete_window = XInternAtom(display, "WM_DELETE_WINDOW", 0);
+    XSetWMProtocols(display, frame, 0, 0);
+    XSendEvent(display, client, False, NoEventMask, &event);
 }
 
 void Frame::handleMaximizeButton(XButtonEvent *ev)
@@ -210,11 +200,7 @@ void Frame::handleMaximizeButton(XButtonEvent *ev)
                 ev->y_root >= xMonitors[monitor].y &&
                 ev->y_root <= xMonitors[monitor].y + xMonitors[monitor].height) // if (x + 20% width), y inside monitor
             {
-                maximize(
-                    xMonitors[monitor].x,       //Monitor root x
-                    xMonitors[monitor].y,       //Monitot root y
-                    xMonitors[monitor].width,   // Monitor width
-                    xMonitors[monitor].height); // Monitor height
+                maximize(xMonitors[monitor].x, xMonitors[monitor].y, xMonitors[monitor].width, xMonitors[monitor].height);
                 break;
             }
         }
@@ -274,7 +260,6 @@ void Frame::handleWindowResize(XMotionEvent *ev, int cursIntX, int cursIntY, int
                 const int y = std::min(winIntY + winIntHeight - 50, winIntY + ev->y_root - cursIntY);
                 const int width = std::max(50, winIntWidth + ev->x_root - cursIntX);
                 const int height = std::max(50, winIntHeight + cursIntY - ev->y_root);
-            
                 moveResizeFrame(winIntX, y, width, height);
             }break;
 
