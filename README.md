@@ -3,6 +3,8 @@
 # lunnisWM
 Dead simple window manager written in c++, based on steveWM
 
+The bar/statusline is from my other project https://github.com/su8/doomy
+
 # Compile and run
 
 ```bash
