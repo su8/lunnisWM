@@ -22,6 +22,8 @@ xterm
 
 xorg librares and headers
 
+xephyr
+
 # Keyboard shortcuts
 
 alt + 1 executes **xterm**
