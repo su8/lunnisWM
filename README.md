@@ -1,4 +1,4 @@
-![](pic1.png)
+![](pic.png)
 
 # lunnisWM
 Dead simple window manager written in c++, based on steveWM
