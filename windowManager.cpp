@@ -73,6 +73,9 @@ void WindowManager::handleKeyPress(XKeyEvent *ev)
             XSetInputFocus(display, frameHandlesTOFrame[application].getClientHandle(), RevertToPointerRoot, CurrentTime);
         }
         break;
+
+    default:
+        break;
     }
 }
 
@@ -89,6 +92,9 @@ void WindowManager::handleKeyRelease(XKeyEvent *ev)
      case XK_Tab:
          XGrabKey(display, XKeysymToKeycode(display, XK_Alt_L), NoEventMask, root, True, GrabModeAsync, GrabModeAsync);
          break;
+
+    default:
+        break;
      }*/
 }
 
@@ -198,6 +204,9 @@ void WindowManager::handleButtonPress(XButtonEvent *ev)
         }
     }
     break;
+
+    default:
+        break;
     }
 }
 
@@ -217,6 +226,9 @@ void WindowManager::handleMotionNotify(XMotionEvent *ev)
         frameHandlesTOFrame[ev->window].handleWindowResize(ev, cursIntX, cursIntY, winIntX, winIntY, winIntWidth, winIntHeight, corner);
     }
     break;
+
+    default:
+        break;
     }
 }
 
@@ -263,6 +275,8 @@ void WindowManager::loop()
             break;
         case UnmapNotify:
             handleUnmapNotify(&ev.xunmap);
+            break;
+        default:
             break;
         }
     }
