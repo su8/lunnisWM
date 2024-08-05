@@ -16,17 +16,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 */
 #include "windowManager.h"
+#include <cstdlib>
 #include <X11/Xutil.h>
 #include <bitset>
 
 int main()
 {
-
-    //std::cout << (1 << 31) << std::endl;
-
     XInitThreads();
     WindowManager window;
 
     window.loop();
-    return 0;
+    return EXIT_SUCCESS;
 }
