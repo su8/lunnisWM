@@ -17,6 +17,8 @@ MA 02110-1301, USA.
 */
 #include "windowManager.h"
 
+extern unsigned int minimizedWindow;
+
 WindowManager::WindowManager()
 {
     display = XOpenDisplay(nullptr);
@@ -63,14 +65,17 @@ void WindowManager::handleKeyPress(XKeyEvent *ev)
         break;
     case XK_Tab:
         {
-            switchFrame += 1;
-            if (static_cast<unsigned long int>(switchFrame) >= applications.size())
+            if (minimizedWindow == 0U)
             {
-                switchFrame = 0;
+                switchFrame += 1;
+                if (static_cast<unsigned long int>(switchFrame) >= applications.size())
+                {
+                    switchFrame = 0;
+                }
+                const Window application = applications[switchFrame]; 
+                XRaiseWindow(display, application);
+                XSetInputFocus(display, frameHandlesTOFrame[application].getClientHandle(), RevertToPointerRoot, CurrentTime);
             }
-            const Window application = applications[switchFrame]; 
-            XRaiseWindow(display, application);
-            XSetInputFocus(display, frameHandlesTOFrame[application].getClientHandle(), RevertToPointerRoot, CurrentTime);
         }
         break;
 
