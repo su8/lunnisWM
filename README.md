@@ -28,4 +28,10 @@ xephyr
 
 alt + 1 executes **xterm**
 
+ctrl + shift focuses the opened xephyr window
+
+alt + tab changes windows focus
+
+alt + escape quits the WM
+
 alt + left/right mouse buttons resizes the current window
