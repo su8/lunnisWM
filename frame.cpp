@@ -17,6 +17,8 @@ MA 02110-1301, USA.
 */
 #include "frame.h"
 
+unsigned int minimizedWindow = 0U;
+
 Frame::Frame(Display *displayPass, Window rootPass, Window clientPass)
 {
     client = clientPass;
@@ -110,7 +112,6 @@ void Frame::moveResizeFrame(int x, int y, int width, int height)
 
     //Move minimize button
     XMoveWindow(display, minimizeButton, width-70, 3);
-
 
 //width - 70, 3
 
@@ -213,6 +214,7 @@ void Frame::handleMaximizeButton(XButtonEvent *ev)
 
 void Frame::handleMinimizeButton()
 {
+    minimizedWindow = 1U;
     XUnmapWindow(display, frame);
 }
 
