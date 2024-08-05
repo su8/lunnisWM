@@ -181,7 +181,7 @@ void Frame::handleCloseButton()
     event.xclient.format = 32;
     event.xclient.data.l[0] = XInternAtom(display, "WM_DELETE_WINDOW", False);
     event.xclient.data.l[1] = CurrentTime;
-    Atom wm_delete_window = XInternAtom(display, "WM_DELETE_WINDOW", 0);
+    //Atom wm_delete_window = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     XSetWMProtocols(display, frame, 0, 0);
     XSendEvent(display, client, False, NoEventMask, &event);
 }
@@ -282,6 +282,9 @@ void Frame::handleWindowResize(XMotionEvent *ev, int cursIntX, int cursIntY, int
 
 void Frame::handleWindowDragOrResize(XMotionEvent *ev, int cursIntX, int cursIntY, int winIntX, int winIntY, int winIntWidth, int winIntHeight)
 {
+    static_cast<void>(winIntWidth);
+    static_cast<void>(winIntHeight);
+
     if (ev->window == titlebar)
     {
         handleWindowDrag(ev, cursIntX, cursIntY, winIntX, winIntY);
