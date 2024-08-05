@@ -15,10 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 */
-extern "C"
-{
-    #include <X11/Xutil.h>
-}
+#include <X11/Xutil.h>
 #include <unordered_map>
 #include <vector>
 #include <list>
@@ -27,9 +24,12 @@ extern "C"
 #include <X11/cursorfont.h>
 #include <unistd.h>
 #include <algorithm>
-#include "macros.h"
-#include "frame.h"
 #include <X11/extensions/Xrandr.h>
+
+#include "frame.h"
+
+#define Button1Mod1Mask (Button1Mask | Mod1Mask)
+#define Button3Mod1Mask (Button3Mask | Mod1Mask)
 
 class WindowManager
 {
