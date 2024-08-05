@@ -36,7 +36,7 @@ WindowManager::WindowManager()
 void WindowManager::handleKeyPress(XKeyEvent *ev)
 {
 
-    switch (XkbKeycodeToKeysym(display, ev->keycode, 0, 0)) // switch event keysym
+    switch (XkbKeycodeToKeysym(display, static_cast<unsigned char>(ev->keycode), 0, 0)) // switch event keysym
     {
     case XK_Escape: //case alt + escape close window manager
         XCloseDisplay(display);
@@ -58,24 +58,38 @@ void WindowManager::handleKeyPress(XKeyEvent *ev)
             event.xclient.format = 32;
             event.xclient.data.l[0] = XInternAtom(display, "WM_DELETE_WINDOW", False);
             event.xclient.data.l[1] = CurrentTime;
-            int result = XSendEvent(display, frameHandlesTOFrame[ev->window].getClientHandle(), False, NoEventMask, &event);
+            XSendEvent(display, frameHandlesTOFrame[ev->window].getClientHandle(), False, NoEventMask, &event);
         }
         break;
     case XK_Tab:
-        switchFrame += 1;
-        if (switchFrame >= applications.size())
         {
-            switchFrame = 0;
+            switchFrame += 1;
+            if (static_cast<unsigned long int>(switchFrame) >= applications.size())
+            {
+                switchFrame = 0;
+            }
+            const Window application = applications[switchFrame]; 
+            XRaiseWindow(display, application);
+            XSetInputFocus(display, frameHandlesTOFrame[application].getClientHandle(), RevertToPointerRoot, CurrentTime);
         }
-        const Window application = applications[switchFrame]; 
-        XRaiseWindow(display, application);
-        XSetInputFocus(display, frameHandlesTOFrame[application].getClientHandle(), RevertToPointerRoot, CurrentTime);
         break;
     }
 }
 
 void WindowManager::handleKeyRelease(XKeyEvent *ev)
 {
+    static_cast<void>(ev);
+    /* switch (XkbKeycodeToKeysym(display, ev->keycode, 0, 0))
+     {
+     case XK_Alt_L:
+         std::cout << "alt" << std::endl;
+         XUngrabKey(display, XKeysymToKeycode(display, XK_Alt_L), NoEventMask, root);
+         //XSync(display, 1);
+         break;
+     case XK_Tab:
+         XGrabKey(display, XKeysymToKeycode(display, XK_Alt_L), NoEventMask, root, True, GrabModeAsync, GrabModeAsync);
+         break;
+     }*/
 }
 
 void WindowManager::handleConfigureRequest(XConfigureRequestEvent *ev)
@@ -88,7 +102,7 @@ void WindowManager::handleConfigureRequest(XConfigureRequestEvent *ev)
     changes.border_width = ev->border_width;
     changes.stack_mode = ev->detail;
     changes.sibling = ev->above;
-    XConfigureWindow(display, ev->window, ev->value_mask, &changes);
+    XConfigureWindow(display, ev->window, static_cast<unsigned int>(ev->value_mask), &changes);
     if (frameHandlesTOFrame.count(ev->parent)) //If parent is a frame
     {
         //Move frame to where client wanted to be
