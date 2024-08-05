@@ -1,3 +1,5 @@
+![](pic1.png)
+
 # lunnisWM
 Dead simple window manager written in c++, based on steveWM
 
@@ -13,5 +15,7 @@ chmod +x run.sh
 # Requirements
 
 g++/clang
+
+xterm
 
 xorg librares and headers
