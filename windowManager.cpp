@@ -123,7 +123,7 @@ void WindowManager::handleMapRequest(XMapRequestEvent *ev)
 
     //Add frame to array and dictionary
     frameHandlesTOFrame[frame.getFrameHandle()] = frame;
-    applications.push_back(frame.getFrameHandle());
+    applications.emplace_back(frame.getFrameHandle());
 
     //Map the client
     XMapWindow(display, ev->window);
