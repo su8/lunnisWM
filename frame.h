@@ -15,16 +15,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 */
-extern "C"
-{
-    #include <X11/Xutil.h>
-}
 #include <unordered_map>
 #include <iostream>
 #include <fstream>
-#include <X11/extensions/Xrandr.h>
 #include <algorithm>
 #include <cmath>
+
+#include <X11/Xutil.h>
+#include <X11/extensions/Xrandr.h>
 
 class Frame
 {
