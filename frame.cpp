@@ -277,6 +277,9 @@ void Frame::handleWindowResize(XMotionEvent *ev, int cursIntX, int cursIntY, int
                 const int height = std::max(50, winIntHeight + ev->y_root - cursIntY);
                 moveResizeFrame(winIntX, winIntY, width, height);
             }break;
+
+            default:
+                break;
         }
 }
 
