@@ -16,9 +16,8 @@
 CFLAGS+=-g2 -Wall -Wextra -O2 -I/usr/include/freetype2 -I/usr/X11R6/include -L/usr/X11R6/lib -I/usr/include/X11 -lX11 -lXft -lXrandr -pipe -pedantic -Wundef -Wshadow -W -Wwrite-strings -Wcast-align -Wstrict-overflow=5 -Wconversion -Wpointer-arith -Wformat=2 -Wsign-compare -Wendif-labels -Wredundant-decls -Winit-self
 PACKAGE=lunnisWM
 
-HEADERS = windowManager.h macros.h frame.h
+HEADERS = windowManager.h frame.h
 SOURCES = main.cpp windowManager.cpp frame.cpp
-
 
 all:
 	$(CXX) $(HEADERS) $(SOURCES) $(CFLAGS) $(LDFLAGS) -o $(PACKAGE)
