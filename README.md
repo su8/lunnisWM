@@ -12,6 +12,10 @@ make -j8 # where 8 are CPU cores
 
 chmod +x run.sh
 ./run.sh
+
+# Or if you want it as primary window manager
+# open up and edit .xinitrc
+# and start it with "startx lunnisWM"
 ```
 
 # Requirements
