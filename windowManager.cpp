@@ -26,6 +26,7 @@ WindowManager::WindowManager()
     XGrabKey(display, XKeysymToKeycode(display, XK_Escape), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
     XGrabKey(display, XKeysymToKeycode(display, XK_1), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
     XGrabKey(display, XKeysymToKeycode(display, XK_Tab), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
+    //XGrabKey(display, XKeysymToKeycode(display, XK_w), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
     //XGrabKey(display, XKeysymToKeycode(display, XK_Alt_L), NoEventMask, root, True, GrabModeAsync, GrabModeAsync);
     Cursor cursor = XCreateFontCursor(display, XC_left_ptr);
     XDefineCursor(display, root, cursor);
@@ -78,6 +79,11 @@ void WindowManager::handleKeyPress(XKeyEvent *ev)
             }
         }
         break;
+
+    // must be tested before merging it
+    /*case XK_w:
+        WUnmapWindow(display, active);
+        break;*/
 
     default:
         break;
