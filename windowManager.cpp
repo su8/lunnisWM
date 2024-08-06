@@ -82,7 +82,7 @@ void WindowManager::handleKeyPress(XKeyEvent *ev)
 
     // must be tested before merging it
     /*case XK_w:
-        WUnmapWindow(display, active);
+        XUnmapWindow(display, active);
         break;*/
 
     default:
