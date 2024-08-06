@@ -15,15 +15,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 */
-#include <X11/Xutil.h>
 #include <unordered_map>
 #include <vector>
 #include <list>
 #include <iostream>
-#include <X11/XKBlib.h>
-#include <X11/cursorfont.h>
 #include <unistd.h>
 #include <algorithm>
+#include <X11/Xutil.h>
+#include <X11/XKBlib.h>
+#include <X11/cursorfont.h>
 #include <X11/extensions/Xrandr.h>
 
 #include "frame.h"
@@ -70,5 +70,4 @@ class WindowManager
 
     int monitorCnt;
     XRRMonitorInfo* xMonitors;
-
 };
