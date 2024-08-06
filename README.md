@@ -40,12 +40,10 @@ alt + right mouse buttons resizes the current window
 
 # Testing needed
 
-lunnisWM needs some ttesting before one option to be merged.
+lunnisWM needs some testing before one option to be merged.
 
-```c
-    /*case XK_w:
-        XUnmapWindow(display, active);
-        break;*/
-```
+https://github.com/su8/lunnisWM/blob/e8d9c80c359d26d36c3b7a8b2cd360f206744c19/windowManager.cpp#L29
 
-Just uncomment it and open up some windows inside the WM and press ctrl + w to close them to test it out. If it works open up a issue and tell me whether if it's working or not.
+https://github.com/su8/lunnisWM/blob/e8d9c80c359d26d36c3b7a8b2cd360f206744c19/windowManager.cpp#L83-L86
+
+Just uncomment it and open up some windows inside the WM and press ctrl + w to close them to test it out. Open up a issue and tell me whether if it's working or not.
