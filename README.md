@@ -46,4 +46,4 @@ https://github.com/su8/lunnisWM/blob/e8d9c80c359d26d36c3b7a8b2cd360f206744c19/wi
 
 https://github.com/su8/lunnisWM/blob/e8d9c80c359d26d36c3b7a8b2cd360f206744c19/windowManager.cpp#L83-L86
 
-Just uncomment it and open up some windows inside the WM and press ctrl + w to close them to test it out. Open up a issue and tell me whether if it's working or not.
+Just uncomment it and open up some windows inside the WM and press alt + w to close them to test it out. Open up a issue and tell me whether if it's working or not.
